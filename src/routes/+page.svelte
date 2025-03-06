@@ -25,33 +25,129 @@
 	let winner: number | null = null;
 	let questions: Question[] = [
 		{
-			text: 'Name something you would find in a kitchen',
+			text: 'Почему кошки',
 			answers: [
-				{ text: 'Refrigerator', points: 25, revealed: false, guessedBy: null },
-				{ text: 'Stove/Oven', points: 20, revealed: false, guessedBy: null },
-				{ text: 'Microwave', points: 18, revealed: false, guessedBy: null },
-				{ text: 'Sink', points: 15, revealed: false, guessedBy: null },
-				{ text: 'Dishwasher', points: 10, revealed: false, guessedBy: null }
+				{ text: 'мурчат/мурлыкают', points: 4, revealed: false, guessedBy: null },
+				{ text: 'мнут лапами', points: 20, revealed: false, guessedBy: null },
+				{ text: 'любят валерьянку', points: 18, revealed: false, guessedBy: null },
+				{ text: 'боятся воды', points: 15, revealed: false, guessedBy: null },
+				{ text: 'и собаки враждуют', points: 10, revealed: false, guessedBy: null },
+				{ text: 'кашляют/чихают', points: 10, revealed: false, guessedBy: null },
+				{ text: 'любят коробки', points: 10, revealed: false, guessedBy: null }
 			]
 		},
 		{
-			text: 'Name a popular vacation destination',
+			text: 'Почему собаки',
 			answers: [
-				{ text: 'Beach/Ocean', points: 30, revealed: false, guessedBy: null },
-				{ text: 'Disney World/Land', points: 25, revealed: false, guessedBy: null },
-				{ text: 'Mountains', points: 15, revealed: false, guessedBy: null },
-				{ text: 'Europe', points: 12, revealed: false, guessedBy: null },
-				{ text: 'National Park', points: 10, revealed: false, guessedBy: null }
+				{ text: 'лижут хозяев', points: 30, revealed: false, guessedBy: null },
+				{ text: 'воют', points: 25, revealed: false, guessedBy: null },
+				{ text: 'слипаются', points: 15, revealed: false, guessedBy: null },
+				{ text: 'спят в ногах', points: 12, revealed: false, guessedBy: null },
+				{ text: 'едят траву', points: 10, revealed: false, guessedBy: null },
+				{ text: 'лижут уши', points: 10, revealed: false, guessedBy: null },
+				{ text: 'облизывают ноги', points: 10, revealed: false, guessedBy: null },
+				{ text: 'любят палки', points: 10, revealed: false, guessedBy: null }
 			]
 		},
 		{
-			text: 'Name something people are afraid of',
+			text: 'Можно ли выжить',
 			answers: [
-				{ text: 'Spiders', points: 35, revealed: false, guessedBy: null },
-				{ text: 'Heights', points: 25, revealed: false, guessedBy: null },
-				{ text: 'Death', points: 15, revealed: false, guessedBy: null },
-				{ text: 'Public Speaking', points: 12, revealed: false, guessedBy: null },
-				{ text: 'Snakes', points: 10, revealed: false, guessedBy: null }
+				{ text: 'в авиакатастрофе', points: 35, revealed: false, guessedBy: null },
+				{ text: 'без скальпа', points: 25, revealed: false, guessedBy: null },
+				{ text: 'после выстрела в голову', points: 15, revealed: false, guessedBy: null },
+				{ text: 'после удара молнии', points: 12, revealed: false, guessedBy: null },
+				{ text: 'если оторвался тромб', points: 10, revealed: false, guessedBy: null },
+				{ text: 'после инсульта/инфаркта', points: 10, revealed: false, guessedBy: null },
+				{ text: 'внутри торнадо', points: 10, revealed: false, guessedBy: null },
+				{ text: 'в падающем лифте', points: 10, revealed: false, guessedBy: null }
+			]
+		},
+		{
+			text: 'Что будет если съесть',
+			answers: [
+				{ text: 'еду с плесенью', points: 35, revealed: false, guessedBy: null },
+				{ text: 'грифель от карандаша', points: 25, revealed: false, guessedBy: null },
+				{ text: 'мухомор красный', points: 15, revealed: false, guessedBy: null },
+				{ text: 'много хурмы', points: 12, revealed: false, guessedBy: null },
+				{ text: 'много сладкого', points: 10, revealed: false, guessedBy: null },
+				{ text: 'просроченный шоколад', points: 10, revealed: false, guessedBy: null }
+			]
+		},
+		{
+			text: 'Почему люди',
+			answers: [
+				{ text: 'храпят', points: 35, revealed: false, guessedBy: null },
+				{ text: 'икают', points: 25, revealed: false, guessedBy: null },
+				{ text: 'зевают', points: 15, revealed: false, guessedBy: null },
+				{ text: 'умирают', points: 12, revealed: false, guessedBy: null },
+				{ text: 'изменяют', points: 10, revealed: false, guessedBy: null },
+				{ text: 'седеют', points: 10, revealed: false, guessedBy: null },
+				{ text: 'пьют алкоголь', points: 10, revealed: false, guessedBy: null },
+				{ text: 'плачут', points: 10, revealed: false, guessedBy: null },
+				{ text: 'картавят', points: 10, revealed: false, guessedBy: null }
+			]
+		},
+		{
+			text: 'Существует ли',
+			answers: [
+				{ text: 'дед мороз', points: 35, revealed: false, guessedBy: null },
+				{ text: 'бог', points: 25, revealed: false, guessedBy: null },
+				{ text: 'шаровая молния', points: 15, revealed: false, guessedBy: null },
+				{ text: 'девственная плева', points: 12, revealed: false, guessedBy: null },
+				{ text: 'материнский инстинкт', points: 10, revealed: false, guessedBy: null },
+				{ text: 'жизнь после смерти', points: 10, revealed: false, guessedBy: null },
+				{ text: 'сглаз', points: 10, revealed: false, guessedBy: null },
+				{ text: 'гипноз', points: 10, revealed: false, guessedBy: null },
+				{ text: 'слово нету', points: 10, revealed: false, guessedBy: null }
+			]
+		},
+		{
+			text: 'Кто убил',
+			answers: [
+				{ text: 'лору палмер', points: 35, revealed: false, guessedBy: null },
+				{ text: 'пушкина', points: 25, revealed: false, guessedBy: null },
+				{ text: 'кеннеди', points: 15, revealed: false, guessedBy: null },
+				{ text: 'распутина', points: 12, revealed: false, guessedBy: null },
+				{ text: 'лермонтова', points: 12, revealed: false, guessedBy: null },
+				{ text: 'цезаря', points: 12, revealed: false, guessedBy: null }
+			]
+		},
+		{
+			text: 'Что будет если',
+			answers: [
+				{ text: 'отказаться от сахара', points: 35, revealed: false, guessedBy: null },
+				{ text: 'бросить курить', points: 25, revealed: false, guessedBy: null },
+				{ text: 'не спать', points: 15, revealed: false, guessedBy: null },
+				{ text: 'много дрочить', points: 12, revealed: false, guessedBy: null },
+				{ text: 'хрустеть пальцами', points: 10, revealed: false, guessedBy: null },
+				{ text: 'не чистить зубы', points: 10, revealed: false, guessedBy: null },
+				{ text: 'пить мало воды', points: 10, revealed: false, guessedBy: null },
+				{ text: 'много плакать', points: 10, revealed: false, guessedBy: null }
+			]
+		},
+		{
+			text: 'Как пахнет',
+			answers: [
+				{ text: 'газ', points: 35, revealed: false, guessedBy: null },
+				{ text: 'аммиак', points: 25, revealed: false, guessedBy: null },
+				{ text: 'мускус', points: 15, revealed: false, guessedBy: null },
+				{ text: 'пачули', points: 12, revealed: false, guessedBy: null },
+				{ text: 'скунс', points: 10, revealed: false, guessedBy: null },
+				{ text: 'марихуана', points: 10, revealed: false, guessedBy: null },
+				{ text: 'сперма', points: 10, revealed: false, guessedBy: null },
+				{ text: 'угарный газ', points: 10, revealed: false, guessedBy: null },
+				{ text: 'янтарь', points: 10, revealed: false, guessedBy: null }
+			]
+		},
+		{
+			text: 'Почему мои',
+			answers: [
+				{ text: 'волосы электризуются', points: 35, revealed: false, guessedBy: null },
+				{ text: 'сторис смотрят боты', points: 25, revealed: false, guessedBy: null },
+				{ text: 'статусы не видят', points: 15, revealed: false, guessedBy: null },
+				{ text: 'руки всегда холодные', points: 12, revealed: false, guessedBy: null },
+				{ text: 'сны сбываются', points: 10, revealed: false, guessedBy: null },
+				{ text: 'волосы быстро жирнеют', points: 10, revealed: false, guessedBy: null }
 			]
 		}
 	];
@@ -101,7 +197,13 @@
 		if (typeof window !== 'undefined') {
 			const gameState = {
 				teams,
-				questions,
+				// Store only the state of questions (revealed/guessedBy), not the questions themselves
+				questionStates: questions.map((q) => ({
+					answers: q.answers.map((a) => ({
+						revealed: a.revealed,
+						guessedBy: a.guessedBy
+					}))
+				})),
 				currentQuestionIndex,
 				gameStarted,
 				gameEnded,
@@ -118,7 +220,55 @@
 				try {
 					const gameState = JSON.parse(savedState);
 					teams = gameState.teams;
-					questions = gameState.questions;
+
+					// Only load the state of the questions (revealed/guessedBy), not the questions themselves
+					if (gameState.questionStates && gameState.questionStates.length === questions.length) {
+						// Apply saved states to current questions
+						questions = questions.map((sourceQuestion, qIndex) => {
+							const savedQuestionState = gameState.questionStates[qIndex];
+
+							// Apply saved answer states if available and arrays match in length
+							if (
+								savedQuestionState?.answers &&
+								savedQuestionState.answers.length === sourceQuestion.answers.length
+							) {
+								return {
+									...sourceQuestion,
+									answers: sourceQuestion.answers.map((sourceAnswer, aIndex) => {
+										const savedAnswerState = savedQuestionState.answers[aIndex];
+										return {
+											...sourceAnswer,
+											revealed: savedAnswerState?.revealed || false,
+											guessedBy: savedAnswerState?.guessedBy || null
+										};
+									})
+								};
+							}
+							return sourceQuestion;
+						});
+					} else if (gameState.questions) {
+						// Legacy support for old format
+						// Keep source question text but use saved state
+						questions = questions.map((sourceQuestion, qIndex) => {
+							const savedQuestion = gameState.questions[qIndex];
+							if (!savedQuestion) return sourceQuestion;
+
+							return {
+								...sourceQuestion,
+								answers: sourceQuestion.answers.map((sourceAnswer, aIndex) => {
+									const savedAnswer = savedQuestion.answers?.[aIndex];
+									if (!savedAnswer) return sourceAnswer;
+
+									return {
+										...sourceAnswer,
+										revealed: savedAnswer.revealed || false,
+										guessedBy: savedAnswer.guessedBy || null
+									};
+								})
+							};
+						});
+					}
+
 					currentQuestionIndex = gameState.currentQuestionIndex;
 					gameStarted = gameState.gameStarted;
 					gameEnded = gameState.gameEnded;
@@ -184,6 +334,18 @@
 
 		// Display toast notification
 		displayToast('Game reset successfully!');
+	}
+
+	// Hard reset - clears localStorage completely and reloads the page
+	function hardReset() {
+		if (typeof window !== 'undefined') {
+			localStorage.removeItem('familyFeudGameState');
+			// Show toast and reload after a short delay
+			displayToast('Complete reset - reloading with source questions...', 1500);
+			setTimeout(() => {
+				window.location.reload();
+			}, 1500);
+		}
 	}
 
 	// Start game
@@ -294,11 +456,28 @@
 		}
 	}
 
+	// Function to check if we're using custom questions
+	function hasCustomQuestions(): boolean {
+		// Check if first question isn't a default question
+		// This is a simple heuristic assuming edits were made to the first question
+		return questions[0]?.text !== 'Name something you would find in a kitchen';
+	}
+
 	// Generate team names on mount
 	onMount(() => {
 		// Try to load saved state, if that fails, generate new team names
 		if (!loadGameState()) {
 			generateTeamNames();
+		}
+
+		// If we detect custom questions, show a toast message
+		if (hasCustomQuestions()) {
+			setTimeout(() => {
+				displayToast(
+					'Custom questions detected! If game state seems incorrect, use the Hard Reset button.',
+					5000
+				);
+			}, 1000);
 		}
 	});
 </script>
@@ -498,8 +677,30 @@
 	{/if}
 
 	<!-- Refresh button -->
-	<div class="fixed right-4 bottom-4">
-		<!-- svelte-ignore a11y_consider_explicit_label -->
+	<div class="fixed right-4 bottom-4 flex flex-col gap-3">
+		<!-- Hard Reset button -->
+		<button
+			class="flex items-center justify-center rounded-full bg-red-600 p-3 shadow-lg transition-colors hover:bg-red-700"
+			title="Hard Reset (Reload with Source Questions)"
+			on:click={hardReset}
+		>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				class="h-6 w-6"
+				fill="none"
+				viewBox="0 0 24 24"
+				stroke="currentColor"
+			>
+				<path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					stroke-width="2"
+					d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+				/>
+			</svg>
+		</button>
+
+		<!-- Regular Reset button -->
 		<button
 			class="flex items-center justify-center rounded-full bg-blue-600 p-3 shadow-lg transition-colors hover:bg-blue-700"
 			title="Reset Game State"
