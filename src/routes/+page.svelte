@@ -482,20 +482,32 @@
 	});
 </script>
 
-<main class="min-h-screen bg-blue-900 p-4 text-white">
+<main class="min-h-screen bg-white p-4 text-gray-800">
 	{#if !gameStarted}
 		<!-- Game setup screen -->
-		<div class="mx-auto my-10 max-w-2xl rounded-lg bg-blue-800 p-6 shadow-xl">
-			<h1 class="mb-6 text-center text-4xl font-bold">Family Feud</h1>
+		<div class="mx-auto my-10 max-w-2xl rounded-lg bg-white p-6 shadow-sm">
+			<div class="mb-8 text-center">
+				<h1 class="mb-2 text-center text-4xl">
+					<span class="text-blue-500">G</span><span class="text-red-500">o</span><span
+						class="text-yellow-500">o</span
+					><span class="text-blue-500">g</span><span class="text-green-500">l</span><span
+						class="text-red-500">e</span
+					>
+					<span class="font-normal text-gray-700">Autocomplete</span>
+				</h1>
+				<p class="text-gray-500">Guess what people are searching for</p>
+			</div>
 
 			<div class="space-y-6">
 				<div class="grid grid-cols-2 gap-6">
 					{#each teams as team, i}
-						<div class="rounded-lg bg-blue-700 p-4">
-							<h2 class="mb-2 text-xl font-bold">Team {i + 1}</h2>
+						<div
+							class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm transition-shadow hover:shadow-md"
+						>
+							<h2 class="mb-2 text-xl font-medium text-gray-700">Team {i + 1}</h2>
 							<div class="mb-2 text-3xl">{team.emoji}</div>
 							<button
-								class="rounded-md bg-blue-500 px-3 py-1 transition-colors hover:bg-blue-600"
+								class="rounded-md bg-blue-500 px-3 py-1 text-white transition-colors hover:bg-blue-600"
 								on:click={() => {
 									const newTeams = [...teams];
 									const instrument =
@@ -517,7 +529,7 @@
 				</div>
 
 				<button
-					class="w-full rounded-lg bg-yellow-500 px-4 py-2 text-xl font-bold text-black transition-colors hover:bg-yellow-600"
+					class="w-full rounded-lg bg-blue-500 px-4 py-3 text-xl font-medium text-white shadow-sm transition-colors hover:bg-blue-600"
 					on:click={startGame}
 				>
 					Start Game
@@ -526,30 +538,30 @@
 		</div>
 	{:else if gameEnded}
 		<!-- Winner screen -->
-		<div class="mx-auto my-10 max-w-2xl rounded-lg bg-blue-800 p-6 text-center shadow-xl">
-			<h1 class="mb-6 text-4xl font-bold">Game Over!</h1>
+		<div class="mx-auto my-10 max-w-2xl rounded-lg bg-white p-6 text-center shadow-sm">
+			<h1 class="mb-6 text-4xl font-medium text-gray-800">Game Over!</h1>
 
 			{#if winner === -1}
 				<div class="mb-4 text-6xl">👔 It's a tie! 👔</div>
-				<p class="mb-8 text-2xl">Both teams scored {teams[0].score} points</p>
+				<p class="mb-8 text-2xl text-gray-700">Both teams scored {teams[0].score} points</p>
 			{:else if winner !== null}
 				<div class="mb-4 text-6xl">🎉 Winner! 🎉</div>
 				<div class="mb-2 text-5xl">{teams[winner].emoji}</div>
-				<p class="mb-8 text-2xl">with {teams[winner].score} points</p>
+				<p class="mb-8 text-2xl text-gray-700">with {teams[winner].score} points</p>
 			{/if}
 
 			<div class="mb-8 grid grid-cols-2 gap-8">
 				{#each teams as team, i}
-					<div class="rounded-lg bg-blue-700 p-4">
-						<h2 class="mb-2 text-xl font-bold">Team {i + 1}</h2>
+					<div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
+						<h2 class="mb-2 text-xl font-medium text-gray-700">Team {i + 1}</h2>
 						<div class="mb-2 text-3xl">{team.emoji}</div>
-						<p class="text-2xl font-bold">{team.score} points</p>
+						<p class="text-2xl font-medium text-gray-900">{team.score} points</p>
 					</div>
 				{/each}
 			</div>
 
 			<button
-				class="rounded-lg bg-yellow-500 px-4 py-2 text-xl font-bold text-black transition-colors hover:bg-yellow-600"
+				class="rounded-lg bg-blue-500 px-4 py-2 text-xl font-medium text-white shadow-sm transition-colors hover:bg-blue-600"
 				on:click={() => {
 					gameStarted = false;
 					generateTeamNames();
@@ -561,15 +573,30 @@
 	{:else}
 		<!-- Game screen -->
 		<div class="mx-auto max-w-6xl">
+			<!-- Header with Google-like styling -->
+			<div class="mb-6 text-center">
+				<h1 class="mb-1 text-center text-3xl">
+					<span class="text-blue-500">G</span><span class="text-red-500">o</span><span
+						class="text-yellow-500">o</span
+					><span class="text-blue-500">g</span><span class="text-green-500">l</span><span
+						class="text-red-500">e</span
+					>
+					<span class="font-normal text-gray-700">Autocomplete</span>
+				</h1>
+				<p class="mb-4 text-sm text-gray-500">People also ask...</p>
+			</div>
+
 			<!-- Teams & Scores -->
 			<div class="mb-6 grid grid-cols-2 gap-4">
 				{#each teams as team, i}
-					<div class="flex items-center justify-between rounded-lg bg-blue-800 p-4">
+					<div
+						class="flex items-center justify-between rounded-lg border border-gray-200 bg-white p-4 shadow-sm"
+					>
 						<div>
-							<h2 class="text-xl font-bold">{team.name}</h2>
+							<h2 class="text-xl font-medium text-gray-700">{team.name}</h2>
 							<div class="text-3xl">{team.emoji}</div>
 						</div>
-						<div class="text-4xl font-bold">{team.score}</div>
+						<div class="text-4xl font-medium text-gray-900">{team.score}</div>
 					</div>
 				{/each}
 			</div>
@@ -577,18 +604,18 @@
 			<!-- Question navigation -->
 			<div class="mb-4 flex items-center justify-between">
 				<button
-					class="rounded-lg bg-blue-700 px-4 py-2 hover:bg-blue-600 disabled:cursor-not-allowed disabled:opacity-50"
+					class="rounded-lg bg-gray-100 px-4 py-2 text-gray-700 transition-colors hover:bg-gray-200 disabled:cursor-not-allowed disabled:opacity-50"
 					on:click={prevQuestion}
 					disabled={currentQuestionIndex === 0}
 				>
 					Previous
 				</button>
 
-				<div class="text-lg font-semibold">
+				<div class="text-lg font-medium text-gray-700">
 					Question {currentQuestionIndex + 1} of {questions.length}
 					{#if questions[currentQuestionIndex].answers.every((answer) => answer.revealed)}
 						<span
-							class="ml-2 inline-block rounded-full bg-green-600 px-2 py-0.5 text-xs text-white"
+							class="ml-2 inline-block rounded-full bg-green-500 px-2 py-0.5 text-xs text-white"
 						>
 							All Revealed
 						</span>
@@ -599,8 +626,8 @@
 					class="rounded-lg {questions[currentQuestionIndex].answers.every(
 						(answer) => answer.revealed
 					)
-						? 'bg-green-600 hover:bg-green-700'
-						: 'bg-blue-700 hover:bg-blue-600'} px-4 py-2 disabled:cursor-not-allowed disabled:opacity-50"
+						? 'bg-green-500 hover:bg-green-600'
+						: 'bg-gray-100 hover:bg-gray-200'} px-4 py-2 text-gray-700 text-white transition-colors disabled:cursor-not-allowed disabled:opacity-50"
 					on:click={nextQuestion}
 					disabled={currentQuestionIndex === questions.length - 1}
 				>
@@ -608,26 +635,41 @@
 				</button>
 			</div>
 
-			<!-- Current question -->
-			<div class="mb-6 rounded-lg bg-blue-800 p-6">
-				<h2 class="mb-4 text-2xl font-bold">{questions[currentQuestionIndex].text}</h2>
+			<!-- Current question - Google Search Bar Style -->
+			<div class="mb-8 rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
+				<div class="mb-4 flex items-center">
+					<div class="mr-3 text-gray-500">
+						<svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path
+								d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z"
+								fill="currentColor"
+							/>
+						</svg>
+					</div>
+					<h2 class="text-xl text-gray-800">{questions[currentQuestionIndex].text}</h2>
+				</div>
 
 				<div class="space-y-3">
 					{#each questions[currentQuestionIndex].answers as answer, answerIndex}
-						<div class="overflow-hidden rounded-lg bg-gray-800 shadow-lg">
+						<div
+							class="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition-shadow hover:shadow-md"
+						>
 							{#if answer.revealed}
-								<div class="flex items-center justify-between p-4">
-									<span class="text-xl">{answer.text}</span>
-									<span class="text-xl font-bold">{answer.points}</span>
+								<div class="flex items-center justify-between border-b border-gray-100 p-4">
+									<div class="flex items-center">
+										<span class="mr-3 text-xl text-gray-500">{answerIndex + 1}.</span>
+										<span class="text-xl text-gray-800">{answer.text}</span>
+									</div>
+									<span class="text-xl font-medium text-gray-700">{answer.points}</span>
 								</div>
-								<div class="flex flex-wrap justify-end gap-2 bg-gray-700 p-2">
-									<span class="mr-2 self-center font-medium">Assign points to:</span>
+								<div class="flex flex-wrap justify-end gap-2 bg-gray-50 p-2">
+									<span class="mr-2 self-center font-medium text-gray-600">Assign points to:</span>
 									{#each teams as team, teamIndex}
 										<button
 											class="rounded-md px-3 py-1 transition-colors
 												{answer.guessedBy === teamIndex
-												? 'bg-green-600 hover:bg-green-700'
-												: 'bg-blue-600 hover:bg-blue-500'}"
+												? 'bg-green-500 text-white hover:bg-green-600'
+												: 'bg-blue-500 text-white hover:bg-blue-600'}"
 											on:click={() => assignPoints(answerIndex, teamIndex)}
 										>
 											{team.emoji}
@@ -636,7 +678,9 @@
 									{/each}
 									<button
 										class="rounded-md px-3 py-1 transition-colors
-											{answer.guessedBy === null ? 'bg-green-600 hover:bg-green-700' : 'bg-gray-600 hover:bg-gray-500'}"
+											{answer.guessedBy === null
+											? 'bg-green-500 text-white hover:bg-green-600'
+											: 'bg-gray-400 text-white hover:bg-gray-500'}"
 										on:click={() => assignPoints(answerIndex, null)}
 									>
 										None {answer.guessedBy === null ? '✓' : ''}
@@ -644,9 +688,12 @@
 								</div>
 							{:else}
 								<div class="flex justify-between p-4">
-									<span class="text-xl">?????</span>
+									<div class="flex items-center">
+										<span class="mr-3 text-xl text-gray-500">{answerIndex + 1}.</span>
+										<span class="text-xl text-gray-400">. . . . . . . . .</span>
+									</div>
 									<button
-										class="rounded-md bg-yellow-500 px-3 py-1 font-medium text-black hover:bg-yellow-600"
+										class="rounded-md bg-blue-500 px-3 py-1 font-medium text-white transition-colors hover:bg-blue-600"
 										on:click={() => revealAnswer(answerIndex)}
 									>
 										Reveal Answer
@@ -663,8 +710,8 @@
 				<button
 					class="rounded-lg {currentQuestionIndex === questions.length - 1 &&
 					questions[currentQuestionIndex].answers.every((answer) => answer.revealed)
-						? 'animate-pulse bg-yellow-500 text-black hover:bg-yellow-600'
-						: 'bg-red-600 hover:bg-red-700'} px-6 py-2 transition-colors"
+						? 'animate-pulse bg-red-500 text-white hover:bg-red-600'
+						: 'bg-red-500 text-white hover:bg-red-600'} px-6 py-2 shadow-sm transition-colors"
 					on:click={endGame}
 				>
 					{currentQuestionIndex === questions.length - 1 &&
@@ -676,11 +723,12 @@
 		</div>
 	{/if}
 
-	<!-- Refresh button -->
+	<!-- Refresh buttons -->
 	<div class="fixed right-4 bottom-4 flex flex-col gap-3">
 		<!-- Hard Reset button -->
+		<!-- svelte-ignore a11y_consider_explicit_label -->
 		<button
-			class="flex items-center justify-center rounded-full bg-red-600 p-3 shadow-lg transition-colors hover:bg-red-700"
+			class="flex items-center justify-center rounded-full bg-red-500 p-3 text-white shadow-md transition-colors hover:bg-red-600"
 			title="Hard Reset (Reload with Source Questions)"
 			on:click={hardReset}
 		>
@@ -701,8 +749,9 @@
 		</button>
 
 		<!-- Regular Reset button -->
+		<!-- svelte-ignore a11y_consider_explicit_label -->
 		<button
-			class="flex items-center justify-center rounded-full bg-blue-600 p-3 shadow-lg transition-colors hover:bg-blue-700"
+			class="flex items-center justify-center rounded-full bg-blue-500 p-3 text-white shadow-md transition-colors hover:bg-blue-600"
 			title="Reset Game State"
 			on:click={resetGameState}
 		>
@@ -726,11 +775,11 @@
 	<!-- Toast notification -->
 	{#if showToast}
 		<div
-			class="fixed right-4 bottom-20 max-w-xs rounded-md bg-green-600 p-4 shadow-lg transition-all"
+			class="fixed right-4 bottom-20 max-w-xs rounded-md bg-gray-800 p-4 text-white shadow-lg transition-all"
 		>
 			<div class="flex items-center">
 				<svg
-					class="mr-2 h-6 w-6"
+					class="mr-2 h-6 w-6 text-green-500"
 					xmlns="http://www.w3.org/2000/svg"
 					fill="none"
 					viewBox="0 0 24 24"
@@ -751,6 +800,6 @@
 
 <style>
 	main {
-		font-family: 'Inter', sans-serif;
+		font-family: 'Arial', 'Helvetica', sans-serif;
 	}
 </style>
