@@ -482,251 +482,261 @@
 	});
 </script>
 
-<main class="min-h-screen bg-white p-4 text-gray-800">
-	{#if !gameStarted}
-		<!-- Game setup screen -->
-		<div class="mx-auto my-10 max-w-2xl rounded-lg bg-white p-6 shadow-sm">
-			<div class="mb-8 text-center">
-				<h1 class="mb-2 text-center text-4xl">
-					<span class="text-blue-500">G</span><span class="text-red-500">o</span><span
-						class="text-yellow-500">o</span
-					><span class="text-blue-500">g</span><span class="text-green-500">l</span><span
-						class="text-red-500">e</span
-					>
-					<span class="font-normal text-gray-700">Autocomplete</span>
-				</h1>
-				<p class="text-gray-500">Guess what people are searching for</p>
-			</div>
-
-			<div class="space-y-6">
-				<div class="grid grid-cols-2 gap-6">
-					{#each teams as team, i}
-						<div
-							class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm transition-shadow hover:shadow-md"
+<main class="flex h-screen justify-center overflow-hidden bg-gray-50">
+	<div class="flex h-full w-full max-w-4xl flex-col bg-white shadow-sm">
+		{#if !gameStarted}
+			<!-- Game setup screen -->
+			<div class="m-auto max-w-2xl rounded-lg bg-white p-6 shadow-sm">
+				<div class="mb-8 text-center">
+					<h1 class="mb-2 text-center text-4xl">
+						<span class="text-blue-500">G</span><span class="text-red-500">o</span><span
+							class="text-yellow-500">o</span
+						><span class="text-blue-500">g</span><span class="text-green-500">l</span><span
+							class="text-red-500">e</span
 						>
+						<span class="font-normal text-gray-700">Autocomplete</span>
+					</h1>
+					<p class="text-gray-500">Guess what people are searching for</p>
+				</div>
+
+				<div class="space-y-6">
+					<div class="grid grid-cols-2 gap-6">
+						{#each teams as team, i}
+							<div
+								class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm transition-shadow hover:shadow-md"
+							>
+								<h2 class="mb-2 text-xl font-medium text-gray-700">Team {i + 1}</h2>
+								<div class="mb-2 text-3xl">{team.emoji}</div>
+								<button
+									class="rounded-md bg-blue-500 px-3 py-1 text-white transition-colors hover:bg-blue-600"
+									on:click={() => {
+										const newTeams = [...teams];
+										const instrument =
+											instrumentEmojis[Math.floor(Math.random() * instrumentEmojis.length)];
+										const animal = animalEmojis[Math.floor(Math.random() * animalEmojis.length)];
+										newTeams[i] = {
+											...team,
+											name: `Team ${instrument}${animal}`,
+											emoji: `${instrument}${animal}`,
+											emojiPair: [instrument, animal]
+										};
+										teams = newTeams;
+									}}
+								>
+									Randomize
+								</button>
+							</div>
+						{/each}
+					</div>
+
+					<button
+						class="w-full rounded-lg bg-blue-500 px-4 py-3 text-xl font-medium text-white shadow-sm transition-colors hover:bg-blue-600"
+						on:click={startGame}
+					>
+						Start Game
+					</button>
+				</div>
+			</div>
+		{:else if gameEnded}
+			<!-- Winner screen -->
+			<div class="m-auto max-w-2xl rounded-lg bg-white p-6 text-center shadow-sm">
+				<h1 class="mb-6 text-4xl font-medium text-gray-800">Game Over!</h1>
+
+				{#if winner === -1}
+					<div class="mb-4 text-6xl">👔 It's a tie! 👔</div>
+					<p class="mb-8 text-2xl text-gray-700">Both teams scored {teams[0].score} points</p>
+				{:else if winner !== null}
+					<div class="mb-4 text-6xl">🎉 Winner! 🎉</div>
+					<div class="mb-2 text-5xl">{teams[winner].emoji}</div>
+					<p class="mb-8 text-2xl text-gray-700">with {teams[winner].score} points</p>
+				{/if}
+
+				<div class="mb-8 grid grid-cols-2 gap-8">
+					{#each teams as team, i}
+						<div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
 							<h2 class="mb-2 text-xl font-medium text-gray-700">Team {i + 1}</h2>
 							<div class="mb-2 text-3xl">{team.emoji}</div>
-							<button
-								class="rounded-md bg-blue-500 px-3 py-1 text-white transition-colors hover:bg-blue-600"
-								on:click={() => {
-									const newTeams = [...teams];
-									const instrument =
-										instrumentEmojis[Math.floor(Math.random() * instrumentEmojis.length)];
-									const animal = animalEmojis[Math.floor(Math.random() * animalEmojis.length)];
-									newTeams[i] = {
-										...team,
-										name: `Team ${instrument}${animal}`,
-										emoji: `${instrument}${animal}`,
-										emojiPair: [instrument, animal]
-									};
-									teams = newTeams;
-								}}
-							>
-								Randomize
-							</button>
+							<p class="text-2xl font-medium text-gray-900">{team.score} points</p>
 						</div>
 					{/each}
 				</div>
 
 				<button
-					class="w-full rounded-lg bg-blue-500 px-4 py-3 text-xl font-medium text-white shadow-sm transition-colors hover:bg-blue-600"
-					on:click={startGame}
+					class="rounded-lg bg-blue-500 px-4 py-2 text-xl font-medium text-white shadow-sm transition-colors hover:bg-blue-600"
+					on:click={() => {
+						gameStarted = false;
+						generateTeamNames();
+					}}
 				>
-					Start Game
+					Play Again
 				</button>
 			</div>
-		</div>
-	{:else if gameEnded}
-		<!-- Winner screen -->
-		<div class="mx-auto my-10 max-w-2xl rounded-lg bg-white p-6 text-center shadow-sm">
-			<h1 class="mb-6 text-4xl font-medium text-gray-800">Game Over!</h1>
-
-			{#if winner === -1}
-				<div class="mb-4 text-6xl">👔 It's a tie! 👔</div>
-				<p class="mb-8 text-2xl text-gray-700">Both teams scored {teams[0].score} points</p>
-			{:else if winner !== null}
-				<div class="mb-4 text-6xl">🎉 Winner! 🎉</div>
-				<div class="mb-2 text-5xl">{teams[winner].emoji}</div>
-				<p class="mb-8 text-2xl text-gray-700">with {teams[winner].score} points</p>
-			{/if}
-
-			<div class="mb-8 grid grid-cols-2 gap-8">
-				{#each teams as team, i}
-					<div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
-						<h2 class="mb-2 text-xl font-medium text-gray-700">Team {i + 1}</h2>
-						<div class="mb-2 text-3xl">{team.emoji}</div>
-						<p class="text-2xl font-medium text-gray-900">{team.score} points</p>
-					</div>
-				{/each}
-			</div>
-
-			<button
-				class="rounded-lg bg-blue-500 px-4 py-2 text-xl font-medium text-white shadow-sm transition-colors hover:bg-blue-600"
-				on:click={() => {
-					gameStarted = false;
-					generateTeamNames();
-				}}
-			>
-				Play Again
-			</button>
-		</div>
-	{:else}
-		<!-- Game screen -->
-		<div class="mx-auto max-w-6xl">
-			<!-- Header with Google-like styling -->
-			<div class="mb-6 text-center">
-				<h1 class="mb-1 text-center text-3xl">
-					<span class="text-blue-500">G</span><span class="text-red-500">o</span><span
-						class="text-yellow-500">o</span
-					><span class="text-blue-500">g</span><span class="text-green-500">l</span><span
-						class="text-red-500">e</span
-					>
-					<span class="font-normal text-gray-700">Autocomplete</span>
-				</h1>
-				<p class="mb-4 text-sm text-gray-500">People also ask...</p>
-			</div>
-
-			<!-- Teams & Scores -->
-			<div class="mb-6 grid grid-cols-2 gap-4">
-				{#each teams as team, i}
-					<div
-						class="flex items-center justify-between rounded-lg border border-gray-200 bg-white p-4 shadow-sm"
-					>
-						<div>
-							<h2 class="text-xl font-medium text-gray-700">{team.name}</h2>
-							<div class="text-3xl">{team.emoji}</div>
-						</div>
-						<div class="text-4xl font-medium text-gray-900">{team.score}</div>
-					</div>
-				{/each}
-			</div>
-
-			<!-- Question navigation -->
-			<div class="mb-4 flex items-center justify-between">
-				<button
-					class="rounded-lg bg-gray-100 px-4 py-2 text-gray-700 transition-colors hover:bg-gray-200 disabled:cursor-not-allowed disabled:opacity-50"
-					on:click={prevQuestion}
-					disabled={currentQuestionIndex === 0}
-				>
-					Previous
-				</button>
-
-				<div class="text-lg font-medium text-gray-700">
-					Question {currentQuestionIndex + 1} of {questions.length}
-					{#if questions[currentQuestionIndex].answers.every((answer) => answer.revealed)}
-						<span
-							class="ml-2 inline-block rounded-full bg-green-500 px-2 py-0.5 text-xs text-white"
+		{:else}
+			<!-- Game screen - Fixed height and width layout -->
+			<div class="flex h-full flex-col p-3">
+				<!-- Header with Google-like styling -->
+				<div class="border-b border-gray-100 pb-2">
+					<h1 class="text-center text-2xl">
+						<span class="text-blue-500">G</span><span class="text-red-500">o</span><span
+							class="text-yellow-500">o</span
+						><span class="text-blue-500">g</span><span class="text-green-500">l</span><span
+							class="text-red-500">e</span
 						>
-							All Revealed
-						</span>
-					{/if}
+						<span class="font-normal text-gray-700">Autocomplete</span>
+					</h1>
+					<p class="text-center text-xs text-gray-500">People also ask...</p>
 				</div>
 
-				<button
-					class="rounded-lg {questions[currentQuestionIndex].answers.every(
-						(answer) => answer.revealed
-					)
-						? 'bg-green-500 hover:bg-green-600'
-						: 'bg-gray-100 hover:bg-gray-200'} px-4 py-2 text-gray-700 text-white transition-colors disabled:cursor-not-allowed disabled:opacity-50"
-					on:click={nextQuestion}
-					disabled={currentQuestionIndex === questions.length - 1}
-				>
-					Next
-				</button>
-			</div>
+				<!-- Teams & Scores -->
+				<div class="grid grid-cols-2 gap-3 py-2">
+					{#each teams as team, i}
+						<div
+							class="flex items-center justify-between rounded-lg border border-gray-200 bg-white p-2 shadow-sm"
+						>
+							<div>
+								<h2 class="text-sm font-medium text-gray-700">{team.name}</h2>
+								<div class="text-xl">{team.emoji}</div>
+							</div>
+							<div class="text-2xl font-medium text-gray-900">{team.score}</div>
+						</div>
+					{/each}
+				</div>
 
-			<!-- Current question - Google Search Bar Style -->
-			<div class="mb-8 rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
-				<div class="mb-4 flex items-center">
-					<div class="mr-3 text-gray-500">
-						<svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<!-- Question with search bar styling -->
+				<div class="flex items-center px-1 py-2">
+					<div class="mr-2 text-gray-500">
+						<svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path
 								d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z"
 								fill="currentColor"
 							/>
 						</svg>
 					</div>
-					<h2 class="text-xl text-gray-800">{questions[currentQuestionIndex].text}</h2>
+					<div class="flex-1 text-base font-medium text-gray-800">
+						{questions[currentQuestionIndex].text}
+					</div>
+
+					<!-- Question navigation -->
+					<div class="flex items-center gap-2 text-xs">
+						<button
+							class="rounded-lg bg-gray-100 px-2 py-1 text-gray-700 transition-colors hover:bg-gray-200 disabled:cursor-not-allowed disabled:opacity-50"
+							on:click={prevQuestion}
+							disabled={currentQuestionIndex === 0}
+						>
+							←
+						</button>
+						<span class="text-gray-500">{currentQuestionIndex + 1}/{questions.length}</span>
+						<button
+							class="rounded-lg {questions[currentQuestionIndex].answers.every(
+								(answer) => answer.revealed
+							)
+								? 'bg-green-500 text-white hover:bg-green-600'
+								: 'bg-gray-100 text-gray-700 hover:bg-gray-200'} px-2 py-1 transition-colors disabled:cursor-not-allowed disabled:opacity-50"
+							on:click={nextQuestion}
+							disabled={currentQuestionIndex === questions.length - 1}
+						>
+							→
+						</button>
+					</div>
 				</div>
 
-				<div class="space-y-3">
-					{#each questions[currentQuestionIndex].answers as answer, answerIndex}
-						<div
-							class="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition-shadow hover:shadow-md"
-						>
-							{#if answer.revealed}
-								<div class="flex items-center justify-between border-b border-gray-100 p-4">
-									<div class="flex items-center">
-										<span class="mr-3 text-xl text-gray-500">{answerIndex + 1}.</span>
-										<span class="text-xl text-gray-800">{answer.text}</span>
-									</div>
-									<span class="text-xl font-medium text-gray-700">{answer.points}</span>
+				<!-- Answers list container -->
+				<div class="flex-1 overflow-auto">
+					<div class="grid gap-2">
+						{#each questions[currentQuestionIndex].answers as answer, answerIndex}
+							<div class="flex h-10">
+								<!-- Answer number and text (or placeholder) -->
+								<div
+									class="flex flex-1 items-center rounded-l-lg border border-gray-200 bg-white pl-3"
+								>
+									<span class="mr-2 text-sm text-gray-500">{answerIndex + 1}.</span>
+									{#if answer.revealed}
+										<span class="text-gray-800">{answer.text}</span>
+									{:else}
+										<span class="text-gray-400">. . . . . . . . .</span>
+									{/if}
 								</div>
-								<div class="flex flex-wrap justify-end gap-2 bg-gray-50 p-2">
-									<span class="mr-2 self-center font-medium text-gray-600">Assign points to:</span>
-									{#each teams as team, teamIndex}
-										<button
-											class="rounded-md px-3 py-1 transition-colors
-												{answer.guessedBy === teamIndex
-												? 'bg-green-500 text-white hover:bg-green-600'
-												: 'bg-blue-500 text-white hover:bg-blue-600'}"
-											on:click={() => assignPoints(answerIndex, teamIndex)}
-										>
-											{team.emoji}
-											{answer.guessedBy === teamIndex ? '✓' : ''}
-										</button>
-									{/each}
-									<button
-										class="rounded-md px-3 py-1 transition-colors
-											{answer.guessedBy === null
-											? 'bg-green-500 text-white hover:bg-green-600'
-											: 'bg-gray-400 text-white hover:bg-gray-500'}"
-										on:click={() => assignPoints(answerIndex, null)}
+
+								<!-- Points for revealed answers -->
+								{#if answer.revealed}
+									<div
+										class="flex w-12 items-center justify-center border-t border-r border-b border-gray-200 bg-gray-50 px-2"
 									>
-										None {answer.guessedBy === null ? '✓' : ''}
-									</button>
-								</div>
-							{:else}
-								<div class="flex justify-between p-4">
-									<div class="flex items-center">
-										<span class="mr-3 text-xl text-gray-500">{answerIndex + 1}.</span>
-										<span class="text-xl text-gray-400">. . . . . . . . .</span>
+										<span class="font-medium text-gray-700">{answer.points}</span>
 									</div>
+								{/if}
+
+								<!-- Action buttons -->
+								{#if answer.revealed}
+									<div
+										class="flex rounded-r-lg border-t border-r border-b border-gray-200 bg-gray-50"
+									>
+										{#each teams as team, teamIndex}
+											<button
+												class="h-full border-r border-gray-200 px-2 transition-colors last:border-r-0 hover:bg-gray-100 {answer.guessedBy ===
+												teamIndex
+													? 'bg-green-100 text-green-600'
+													: ''}"
+												on:click={() => assignPoints(answerIndex, teamIndex)}
+											>
+												<span class="text-sm">{team.emoji}</span>
+											</button>
+										{/each}
+										<button
+											class="px-2 transition-colors hover:bg-gray-100 {answer.guessedBy === null
+												? 'bg-gray-200'
+												: ''}"
+											on:click={() => assignPoints(answerIndex, null)}
+										>
+											<span class="text-xs">✕</span>
+										</button>
+									</div>
+								{:else}
 									<button
-										class="rounded-md bg-blue-500 px-3 py-1 font-medium text-white transition-colors hover:bg-blue-600"
+										class="w-20 rounded-r-lg border border-blue-500 bg-blue-500 text-xs font-medium text-white transition-colors hover:bg-blue-600"
 										on:click={() => revealAnswer(answerIndex)}
 									>
-										Reveal Answer
+										Reveal
 									</button>
-								</div>
-							{/if}
-						</div>
-					{/each}
+								{/if}
+							</div>
+						{/each}
+					</div>
+				</div>
+
+				<!-- Bottom controls -->
+				<div class="mt-2 flex items-center justify-between border-t border-gray-100 pt-2">
+					<div>
+						{#if questions[currentQuestionIndex].answers.every((answer) => answer.revealed)}
+							<span class="rounded-full bg-green-500 px-2 py-1 text-xs text-white">
+								All Revealed
+							</span>
+						{:else}
+							<span class="text-xs text-gray-500">
+								{questions[currentQuestionIndex].answers.filter((a) => a.revealed).length} of {questions[
+									currentQuestionIndex
+								].answers.length} revealed
+							</span>
+						{/if}
+					</div>
+
+					<button
+						class="rounded-lg {currentQuestionIndex === questions.length - 1 &&
+						questions[currentQuestionIndex].answers.every((answer) => answer.revealed)
+							? 'animate-pulse bg-red-500 hover:bg-red-600'
+							: 'bg-red-500 hover:bg-red-600'} px-3 py-1 text-sm text-white shadow-sm transition-colors"
+						on:click={endGame}
+					>
+						End Game
+					</button>
 				</div>
 			</div>
-
-			<!-- End game button -->
-			<div class="text-center">
-				<button
-					class="rounded-lg {currentQuestionIndex === questions.length - 1 &&
-					questions[currentQuestionIndex].answers.every((answer) => answer.revealed)
-						? 'animate-pulse bg-red-500 text-white hover:bg-red-600'
-						: 'bg-red-500 text-white hover:bg-red-600'} px-6 py-2 shadow-sm transition-colors"
-					on:click={endGame}
-				>
-					{currentQuestionIndex === questions.length - 1 &&
-					questions[currentQuestionIndex].answers.every((answer) => answer.revealed)
-						? 'End Game - All Questions Complete!'
-						: 'End Game'}
-				</button>
-			</div>
-		</div>
-	{/if}
+		{/if}
+	</div>
 
 	<!-- Refresh buttons -->
 	<div class="fixed right-4 bottom-4 flex flex-col gap-3">
 		<!-- Hard Reset button -->
-		<!-- svelte-ignore a11y_consider_explicit_label -->
 		<button
 			class="flex items-center justify-center rounded-full bg-red-500 p-3 text-white shadow-md transition-colors hover:bg-red-600"
 			title="Hard Reset (Reload with Source Questions)"
@@ -734,7 +744,7 @@
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
-				class="h-6 w-6"
+				class="h-5 w-5"
 				fill="none"
 				viewBox="0 0 24 24"
 				stroke="currentColor"
@@ -749,7 +759,6 @@
 		</button>
 
 		<!-- Regular Reset button -->
-		<!-- svelte-ignore a11y_consider_explicit_label -->
 		<button
 			class="flex items-center justify-center rounded-full bg-blue-500 p-3 text-white shadow-md transition-colors hover:bg-blue-600"
 			title="Reset Game State"
@@ -757,7 +766,7 @@
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
-				class="h-6 w-6"
+				class="h-5 w-5"
 				fill="none"
 				viewBox="0 0 24 24"
 				stroke="currentColor"
@@ -779,7 +788,7 @@
 		>
 			<div class="flex items-center">
 				<svg
-					class="mr-2 h-6 w-6 text-green-500"
+					class="mr-2 h-5 w-5 text-green-500"
 					xmlns="http://www.w3.org/2000/svg"
 					fill="none"
 					viewBox="0 0 24 24"
