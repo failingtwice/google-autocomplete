@@ -255,16 +255,13 @@
 	// Check if round should end
 	function checkRoundEnd() {
 		const allRevealed = questions[currentQuestionIndex].answers.every((answer) => answer.revealed);
-		if (allRevealed && currentQuestionIndex < questions.length - 1) {
-			// Increment to next question with a slight delay to let the user see the fully revealed answers
-			setTimeout(() => {
-				currentQuestionIndex++;
-			}, 500);
-		} else if (allRevealed && currentQuestionIndex === questions.length - 1) {
-			// End the game with a slight delay
-			setTimeout(() => {
-				endGame();
-			}, 500);
+
+		// Only end game if all answers in final question are revealed and user clicks "End Game"
+		// No longer automatically advancing to next question
+
+		// Display a toast when all answers are revealed
+		if (allRevealed) {
+			displayToast('All answers revealed! You can move to the next question.');
 		}
 	}
 
@@ -410,10 +407,21 @@
 
 				<div class="text-lg font-semibold">
 					Question {currentQuestionIndex + 1} of {questions.length}
+					{#if questions[currentQuestionIndex].answers.every((answer) => answer.revealed)}
+						<span
+							class="ml-2 inline-block rounded-full bg-green-600 px-2 py-0.5 text-xs text-white"
+						>
+							All Revealed
+						</span>
+					{/if}
 				</div>
 
 				<button
-					class="rounded-lg bg-blue-700 px-4 py-2 hover:bg-blue-600 disabled:cursor-not-allowed disabled:opacity-50"
+					class="rounded-lg {questions[currentQuestionIndex].answers.every(
+						(answer) => answer.revealed
+					)
+						? 'bg-green-600 hover:bg-green-700'
+						: 'bg-blue-700 hover:bg-blue-600'} px-4 py-2 disabled:cursor-not-allowed disabled:opacity-50"
 					on:click={nextQuestion}
 					disabled={currentQuestionIndex === questions.length - 1}
 				>
@@ -474,10 +482,16 @@
 			<!-- End game button -->
 			<div class="text-center">
 				<button
-					class="rounded-lg bg-red-600 px-6 py-2 transition-colors hover:bg-red-700"
+					class="rounded-lg {currentQuestionIndex === questions.length - 1 &&
+					questions[currentQuestionIndex].answers.every((answer) => answer.revealed)
+						? 'animate-pulse bg-yellow-500 text-black hover:bg-yellow-600'
+						: 'bg-red-600 hover:bg-red-700'} px-6 py-2 transition-colors"
 					on:click={endGame}
 				>
-					End Game
+					{currentQuestionIndex === questions.length - 1 &&
+					questions[currentQuestionIndex].answers.every((answer) => answer.revealed)
+						? 'End Game - All Questions Complete!'
+						: 'End Game'}
 				</button>
 			</div>
 		</div>
