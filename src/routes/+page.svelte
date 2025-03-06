@@ -96,6 +96,96 @@
 		});
 	}
 
+	// LocalStorage functions
+	function saveGameState() {
+		if (typeof window !== 'undefined') {
+			const gameState = {
+				teams,
+				questions,
+				currentQuestionIndex,
+				gameStarted,
+				gameEnded,
+				winner
+			};
+			localStorage.setItem('familyFeudGameState', JSON.stringify(gameState));
+		}
+	}
+
+	function loadGameState(): boolean {
+		if (typeof window !== 'undefined') {
+			const savedState = localStorage.getItem('familyFeudGameState');
+			if (savedState) {
+				try {
+					const gameState = JSON.parse(savedState);
+					teams = gameState.teams;
+					questions = gameState.questions;
+					currentQuestionIndex = gameState.currentQuestionIndex;
+					gameStarted = gameState.gameStarted;
+					gameEnded = gameState.gameEnded;
+					winner = gameState.winner;
+					return true;
+				} catch (error) {
+					console.error('Error loading game state:', error);
+				}
+			}
+		}
+		return false;
+	}
+
+	// Toast notification
+	let showToast = false;
+	let toastMessage = '';
+
+	function displayToast(message: string, duration: number = 3000) {
+		toastMessage = message;
+		showToast = true;
+		setTimeout(() => {
+			showToast = false;
+		}, duration);
+	}
+
+	function resetGameState() {
+		// Clear localStorage
+		if (typeof window !== 'undefined') {
+			localStorage.removeItem('familyFeudGameState');
+		}
+
+		// Reset to initial state
+		gameStarted = false;
+		gameEnded = false;
+		winner = null;
+		currentQuestionIndex = 0;
+
+		// Reset teams but keep current emojis
+		teams = teams.map((team) => ({
+			...team,
+			score: 0
+		}));
+
+		// Reset questions and answers
+		questions = questions.map((question) => ({
+			...question,
+			answers: question.answers.map((answer) => ({
+				...answer,
+				revealed: false,
+				guessedBy: null
+			}))
+		}));
+
+		// Generate new team names
+		generateTeamNames();
+
+		// Show a temporary message
+		const originalTitle = document.title;
+		document.title = 'Game Reset!';
+		setTimeout(() => {
+			document.title = originalTitle;
+		}, 1500);
+
+		// Display toast notification
+		displayToast('Game reset successfully!');
+	}
+
 	// Start game
 	function startGame() {
 		gameStarted = true;
@@ -109,6 +199,7 @@
 			});
 		});
 		currentQuestionIndex = 0;
+		saveGameState();
 	}
 
 	// Reveal answer
@@ -120,6 +211,9 @@
 			updatedQuestions[currentQuestionIndex].answers[answerIndex].revealed = true;
 			updatedQuestions[currentQuestionIndex].answers[answerIndex].guessedBy = null;
 			questions = updatedQuestions;
+
+			// Save game state
+			saveGameState();
 		}
 	}
 
@@ -149,6 +243,9 @@
 			// Update both arrays to trigger reactivity
 			questions = updatedQuestions;
 			teams = updatedTeams;
+
+			// Save game state
+			saveGameState();
 
 			// Check if all answers are revealed
 			checkRoundEnd();
@@ -181,12 +278,14 @@
 		} else {
 			winner = -1; // Tie
 		}
+		saveGameState();
 	}
 
 	// Next question
 	function nextQuestion() {
 		if (currentQuestionIndex < questions.length - 1) {
 			currentQuestionIndex++;
+			saveGameState();
 		}
 	}
 
@@ -194,12 +293,16 @@
 	function prevQuestion() {
 		if (currentQuestionIndex > 0) {
 			currentQuestionIndex--;
+			saveGameState();
 		}
 	}
 
 	// Generate team names on mount
 	onMount(() => {
-		generateTeamNames();
+		// Try to load saved state, if that fails, generate new team names
+		if (!loadGameState()) {
+			generateTeamNames();
+		}
 	});
 </script>
 
@@ -376,6 +479,56 @@
 				>
 					End Game
 				</button>
+			</div>
+		</div>
+	{/if}
+
+	<!-- Refresh button -->
+	<div class="fixed right-4 bottom-4">
+		<!-- svelte-ignore a11y_consider_explicit_label -->
+		<button
+			class="flex items-center justify-center rounded-full bg-blue-600 p-3 shadow-lg transition-colors hover:bg-blue-700"
+			title="Reset Game State"
+			on:click={resetGameState}
+		>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				class="h-6 w-6"
+				fill="none"
+				viewBox="0 0 24 24"
+				stroke="currentColor"
+			>
+				<path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					stroke-width="2"
+					d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+				/>
+			</svg>
+		</button>
+	</div>
+
+	<!-- Toast notification -->
+	{#if showToast}
+		<div
+			class="fixed right-4 bottom-20 max-w-xs rounded-md bg-green-600 p-4 shadow-lg transition-all"
+		>
+			<div class="flex items-center">
+				<svg
+					class="mr-2 h-6 w-6"
+					xmlns="http://www.w3.org/2000/svg"
+					fill="none"
+					viewBox="0 0 24 24"
+					stroke="currentColor"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M5 13l4 4L19 7"
+					/>
+				</svg>
+				<span>{toastMessage}</span>
 			</div>
 		</div>
 	{/if}
