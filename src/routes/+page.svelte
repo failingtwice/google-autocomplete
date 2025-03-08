@@ -27,124 +27,123 @@
 		{
 			text: 'Почему кошки',
 			answers: [
-				{ text: 'мурчат/мурлыкают', points: 4, revealed: false, guessedBy: null },
-				{ text: 'мнут лапами', points: 20, revealed: false, guessedBy: null },
-				{ text: 'любят валерьянку', points: 18, revealed: false, guessedBy: null },
-				{ text: 'боятся воды', points: 15, revealed: false, guessedBy: null },
-				{ text: 'и собаки враждуют', points: 10, revealed: false, guessedBy: null },
-				{ text: 'кашляют/чихают', points: 10, revealed: false, guessedBy: null },
+				{ text: 'мурчат/мурлыкают', points: 5, revealed: false, guessedBy: null },
+				{ text: 'мнут лапами', points: 10, revealed: false, guessedBy: null },
+				{ text: 'любят валерьянку', points: 8, revealed: false, guessedBy: null },
+				{ text: 'боятся воды', points: 8, revealed: false, guessedBy: null },
+				{ text: 'и собаки враждуют', points: 12, revealed: false, guessedBy: null },
+				{ text: 'кашляют/чихают', points: 8, revealed: false, guessedBy: null },
 				{ text: 'любят коробки', points: 10, revealed: false, guessedBy: null }
 			]
 		},
 		{
 			text: 'Почему собаки',
 			answers: [
-				{ text: 'лижут хозяев', points: 30, revealed: false, guessedBy: null },
-				{ text: 'воют', points: 25, revealed: false, guessedBy: null },
-				{ text: 'слипаются', points: 15, revealed: false, guessedBy: null },
+				{ text: 'лижут хозяев', points: 12, revealed: false, guessedBy: null },
+				{ text: 'воют', points: 8, revealed: false, guessedBy: null },
+				{ text: 'слипаются', points: 18, revealed: false, guessedBy: null },
 				{ text: 'спят в ногах', points: 12, revealed: false, guessedBy: null },
 				{ text: 'едят траву', points: 10, revealed: false, guessedBy: null },
-				{ text: 'лижут уши', points: 10, revealed: false, guessedBy: null },
-				{ text: 'облизывают ноги', points: 10, revealed: false, guessedBy: null },
-				{ text: 'любят палки', points: 10, revealed: false, guessedBy: null }
+				{ text: 'лижут уши', points: 16, revealed: false, guessedBy: null },
+				{ text: 'облизывают ноги', points: 7, revealed: false, guessedBy: null },
+				{ text: 'любят палки', points: 6, revealed: false, guessedBy: null }
 			]
 		},
 		{
 			text: 'Можно ли выжить',
 			answers: [
-				{ text: 'в авиакатастрофе', points: 35, revealed: false, guessedBy: null },
-				{ text: 'без скальпа', points: 25, revealed: false, guessedBy: null },
-				{ text: 'после выстрела в голову', points: 15, revealed: false, guessedBy: null },
-				{ text: 'после удара молнии', points: 12, revealed: false, guessedBy: null },
-				{ text: 'если оторвался тромб', points: 10, revealed: false, guessedBy: null },
-				{ text: 'после инсульта/инфаркта', points: 10, revealed: false, guessedBy: null },
-				{ text: 'внутри торнадо', points: 10, revealed: false, guessedBy: null },
-				{ text: 'в падающем лифте', points: 10, revealed: false, guessedBy: null }
+				{ text: 'в авиакатастрофе', points: 5, revealed: false, guessedBy: null },
+				{ text: 'без скальпа', points: 16, revealed: false, guessedBy: null },
+				{ text: 'после выстрела в голову', points: 14, revealed: false, guessedBy: null },
+				{ text: 'после удара молнии', points: 8, revealed: false, guessedBy: null },
+				{ text: 'если оторвался тромб', points: 17, revealed: false, guessedBy: null },
+				{ text: 'после инсульта/инфаркта', points: 7, revealed: false, guessedBy: null },
+				{ text: 'внутри торнадо', points: 13, revealed: false, guessedBy: null },
+				{ text: 'в падающем лифте', points: 6, revealed: false, guessedBy: null }
 			]
 		},
 		{
 			text: 'Что будет если съесть',
 			answers: [
-				{ text: 'еду с плесенью', points: 35, revealed: false, guessedBy: null },
-				{ text: 'грифель от карандаша', points: 25, revealed: false, guessedBy: null },
-				{ text: 'мухомор красный', points: 15, revealed: false, guessedBy: null },
-				{ text: 'много хурмы', points: 12, revealed: false, guessedBy: null },
+				{ text: 'еду с плесенью', points: 5, revealed: false, guessedBy: null },
+				{ text: 'грифель от карандаша', points: 14, revealed: false, guessedBy: null },
+				{ text: 'мухомор красный', points: 8, revealed: false, guessedBy: null },
+				{ text: 'много хурмы', points: 20, revealed: false, guessedBy: null },
 				{ text: 'много сладкого', points: 10, revealed: false, guessedBy: null },
-				{ text: 'просроченный шоколад', points: 10, revealed: false, guessedBy: null }
+				{ text: 'просроченную еду', points: 5, revealed: false, guessedBy: null }
 			]
 		},
 		{
 			text: 'Почему люди',
 			answers: [
-				{ text: 'храпят', points: 35, revealed: false, guessedBy: null },
-				{ text: 'икают', points: 25, revealed: false, guessedBy: null },
-				{ text: 'зевают', points: 15, revealed: false, guessedBy: null },
-				{ text: 'умирают', points: 12, revealed: false, guessedBy: null },
-				{ text: 'изменяют', points: 10, revealed: false, guessedBy: null },
-				{ text: 'седеют', points: 10, revealed: false, guessedBy: null },
-				{ text: 'пьют алкоголь', points: 10, revealed: false, guessedBy: null },
-				{ text: 'плачут', points: 10, revealed: false, guessedBy: null },
-				{ text: 'картавят', points: 10, revealed: false, guessedBy: null }
+				{ text: 'храпят', points: 6, revealed: false, guessedBy: null },
+				{ text: 'икают', points: 7, revealed: false, guessedBy: null },
+				{ text: 'зевают', points: 8, revealed: false, guessedBy: null },
+				{ text: 'умирают', points: 5, revealed: false, guessedBy: null },
+				{ text: 'изменяют', points: 14, revealed: false, guessedBy: null },
+				{ text: 'седеют', points: 12, revealed: false, guessedBy: null },
+				{ text: 'пьют алкоголь', points: 8, revealed: false, guessedBy: null },
+				{ text: 'плачут', points: 13, revealed: false, guessedBy: null },
+				{ text: 'картавят', points: 18, revealed: false, guessedBy: null }
 			]
 		},
 		{
 			text: 'Существует ли',
 			answers: [
-				{ text: 'дед мороз', points: 35, revealed: false, guessedBy: null },
-				{ text: 'бог', points: 25, revealed: false, guessedBy: null },
-				{ text: 'шаровая молния', points: 15, revealed: false, guessedBy: null },
-				{ text: 'девственная плева', points: 12, revealed: false, guessedBy: null },
-				{ text: 'материнский инстинкт', points: 10, revealed: false, guessedBy: null },
-				{ text: 'жизнь после смерти', points: 10, revealed: false, guessedBy: null },
-				{ text: 'сглаз', points: 10, revealed: false, guessedBy: null },
-				{ text: 'гипноз', points: 10, revealed: false, guessedBy: null },
-				{ text: 'слово нету', points: 10, revealed: false, guessedBy: null }
+				{ text: 'дед мороз', points: 7, revealed: false, guessedBy: null },
+				{ text: 'бог', points: 5, revealed: false, guessedBy: null },
+				{ text: 'шаровая молния', points: 10, revealed: false, guessedBy: null },
+				{ text: 'девственная плева', points: 18, revealed: false, guessedBy: null },
+				{ text: 'материнский инстинкт', points: 12, revealed: false, guessedBy: null },
+				{ text: 'жизнь после смерти', points: 7, revealed: false, guessedBy: null },
+				{ text: 'сглаз', points: 13, revealed: false, guessedBy: null },
+				{ text: 'гипноз', points: 12, revealed: false, guessedBy: null },
+				{ text: 'слово нету', points: 18, revealed: false, guessedBy: null }
 			]
 		},
 		{
 			text: 'Кто убил',
 			answers: [
-				{ text: 'лору палмер', points: 35, revealed: false, guessedBy: null },
-				{ text: 'пушкина', points: 25, revealed: false, guessedBy: null },
-				{ text: 'кеннеди', points: 15, revealed: false, guessedBy: null },
-				{ text: 'распутина', points: 12, revealed: false, guessedBy: null },
-				{ text: 'лермонтова', points: 12, revealed: false, guessedBy: null },
+				{ text: 'лору палмер', points: 12, revealed: false, guessedBy: null },
+				{ text: 'пушкина', points: 8, revealed: false, guessedBy: null },
+				{ text: 'кеннеди', points: 5, revealed: false, guessedBy: null },
+				{ text: 'распутина', points: 14, revealed: false, guessedBy: null },
+				{ text: 'лермонтова', points: 14, revealed: false, guessedBy: null },
 				{ text: 'цезаря', points: 12, revealed: false, guessedBy: null }
 			]
 		},
 		{
 			text: 'Что будет если',
 			answers: [
-				{ text: 'отказаться от сахара', points: 35, revealed: false, guessedBy: null },
-				{ text: 'бросить курить', points: 25, revealed: false, guessedBy: null },
-				{ text: 'не спать', points: 15, revealed: false, guessedBy: null },
-				{ text: 'много дрочить', points: 12, revealed: false, guessedBy: null },
-				{ text: 'хрустеть пальцами', points: 10, revealed: false, guessedBy: null },
-				{ text: 'не чистить зубы', points: 10, revealed: false, guessedBy: null },
-				{ text: 'пить мало воды', points: 10, revealed: false, guessedBy: null },
-				{ text: 'много плакать', points: 10, revealed: false, guessedBy: null }
+				{ text: 'отказаться от сахара', points: 8, revealed: false, guessedBy: null },
+				{ text: 'бросить курить', points: 12, revealed: false, guessedBy: null },
+				{ text: 'не спать', points: 8, revealed: false, guessedBy: null },
+				{ text: 'много дрочить', points: 18, revealed: false, guessedBy: null },
+				{ text: 'хрустеть пальцами', points: 13, revealed: false, guessedBy: null },
+				{ text: 'не чистить зубы', points: 14, revealed: false, guessedBy: null },
+				{ text: 'пить мало воды', points: 9, revealed: false, guessedBy: null },
+				{ text: 'много плакать', points: 11, revealed: false, guessedBy: null }
 			]
 		},
 		{
 			text: 'Как пахнет',
 			answers: [
-				{ text: 'газ', points: 35, revealed: false, guessedBy: null },
-				{ text: 'аммиак', points: 25, revealed: false, guessedBy: null },
-				{ text: 'мускус', points: 15, revealed: false, guessedBy: null },
+				{ text: 'аммиак', points: 12, revealed: false, guessedBy: null },
+				{ text: 'мускус', points: 16, revealed: false, guessedBy: null },
 				{ text: 'пачули', points: 12, revealed: false, guessedBy: null },
-				{ text: 'скунс', points: 10, revealed: false, guessedBy: null },
+				{ text: 'скунс', points: 8, revealed: false, guessedBy: null },
 				{ text: 'марихуана', points: 10, revealed: false, guessedBy: null },
-				{ text: 'сперма', points: 10, revealed: false, guessedBy: null },
-				{ text: 'угарный газ', points: 10, revealed: false, guessedBy: null },
-				{ text: 'янтарь', points: 10, revealed: false, guessedBy: null }
+				{ text: 'сперма', points: 14, revealed: false, guessedBy: null },
+				{ text: 'угарный газ', points: 12, revealed: false, guessedBy: null },
+				{ text: 'янтарь', points: 16, revealed: false, guessedBy: null }
 			]
 		},
 		{
 			text: 'Почему мои',
 			answers: [
-				{ text: 'волосы электризуются', points: 35, revealed: false, guessedBy: null },
-				{ text: 'сторис смотрят боты', points: 25, revealed: false, guessedBy: null },
-				{ text: 'статусы не видят', points: 15, revealed: false, guessedBy: null },
+				{ text: 'волосы электризуются', points: 12, revealed: false, guessedBy: null },
+				{ text: 'сторис смотрят боты', points: 16, revealed: false, guessedBy: null },
+				{ text: 'статусы не видят', points: 10, revealed: false, guessedBy: null },
 				{ text: 'руки всегда холодные', points: 12, revealed: false, guessedBy: null },
 				{ text: 'сны сбываются', points: 10, revealed: false, guessedBy: null },
 				{ text: 'волосы быстро жирнеют', points: 10, revealed: false, guessedBy: null }
@@ -154,7 +153,30 @@
 	let currentQuestionIndex = 0;
 
 	// Instrument and animal emojis for team names
-	const instrumentEmojis = ['🎸', '🎹', '🎺', '🎻', '🥁', '🎷', '🪕', '🪗', '🎤', '🪘', '📯'];
+	const instrumentEmojis = [
+		'🎸',
+		'🎹',
+		'🎺',
+		'🎻',
+		'🥁',
+		'🎷',
+		'🪕',
+		'🪗',
+		'🎤',
+		'🪘',
+		'📯',
+		'🎧',
+		'👓',
+		'👠',
+		'🩴',
+		'🎩',
+		'👙',
+		'🩲',
+		'🪓',
+		'🪃',
+		'🪛',
+		'🔮'
+	];
 	const animalEmojis = [
 		'🐶',
 		'🐱',
@@ -175,7 +197,34 @@
 		'🦓',
 		'🦍',
 		'🐘',
-		'🦒'
+		'🦒',
+		'🐐',
+		'🦃',
+		'🐓',
+		'🐥',
+		'🦩',
+		'🐍',
+		'🦎',
+		'🐢',
+		'🦨',
+		'🐋',
+		'🐬',
+		'🐳',
+		'🐙',
+		'🦄',
+		'🦓',
+		'🦍',
+		'🐘',
+		'🦒',
+		'🐐',
+		'🦃',
+		'🐓',
+		'🫎',
+		'🐛',
+		'🐜',
+		'🐝',
+		'🐞',
+		'🐜'
 	];
 
 	// Generate random team names
